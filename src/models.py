@@ -4,9 +4,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 db = SQLAlchemy()
 
-# ============================
-# TABLAS INTERMEDIAS (FAVORITOS)
-# ============================
+
 
 favorite_characters = Table(
     "favorite_characters",
@@ -22,9 +20,7 @@ favorite_locations = Table(
     Column("location_id", ForeignKey("location.id"), primary_key=True),
 )
 
-# ============================
-# MODELO USER
-# ============================
+
 
 class User(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -51,9 +47,7 @@ class User(db.Model):
             "favorite_locations": [location.id for location in self.location_like]
         }
 
-# ============================
-# MODELO CHARACTER
-# ============================
+
 
 class Character(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -75,9 +69,7 @@ class Character(db.Model):
             "quote": self.quote
         }
 
-# ============================
-# MODELO LOCATION
-# ============================
+
 
 class Location(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
